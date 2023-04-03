@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 
 dbConnect();
 
+
 app.use("/user/", userRouter);
 app.use("/auth", authRouter);
 app.use("/products", productRouter);
