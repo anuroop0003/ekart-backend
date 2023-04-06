@@ -41,11 +41,8 @@ module.exports = {
   },
   profileGet: async(data) => {
     const userId = new ObjectId(data.userId);
-    console.log("data", data,userId)
     const userExist = await User.findOne({_id : userId});
     const sellerExist = await Sellers.findOne({userId : userId});
-    console.log("userExist",userExist);
-    console.log("sellerExist",sellerExist)
     return { email: userExist.email, usertype: userExist.usertype, name: sellerExist.name}
   }
 };

@@ -13,7 +13,6 @@ module.exports = {
     }
   },
   getProfile: async(req, res) => {
-    console.log("mtl",req.payload)
     try {
       const profileData = await userService.profileGet(req.payload);
       res.status(200).json({

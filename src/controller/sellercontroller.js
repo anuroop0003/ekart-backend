@@ -17,9 +17,7 @@ module.exports = {
     checkSeller: async (req, res) => {
         try {
             req.body['userId'] = req.payload.userId;
-            // req.body['status'] = false;
             const sellerData = await sellerService.sellerCheck(req.body);
-            console.log(sellerData);
             res.status(200).json({
                 message: 'Seller status fetched',
                 data: {"status" : sellerData.status}

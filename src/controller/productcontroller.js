@@ -4,7 +4,6 @@ module.exports = {
   addProduct: async (req, res) => {
     try {
       req.body['userId'] = req.payload.userId;
-      console.log("req.payload.userId", req.payload.userId);
       req.body['status'] = 'pending';
       const product = await productService.addProduct(req.body);
       res.status(200).json({
