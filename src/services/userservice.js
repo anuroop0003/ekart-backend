@@ -14,13 +14,16 @@ module.exports = {
       email: data.email,
       mobile: data.mobile,
       password: encryptedPassword,
-      usertype:data.usertype
+      usertype:data.usertype,
+      name: data.name,
+      gender: data.gender
     };
     let retundata=await User.create(userDetails);
     if(data.usertype=='seller'){
       let bindData=new Sellers({
         userId:new ObjectId(retundata._id),
-        name:data.name
+        name:data.name,
+        isOnboarded:false
       })
       return await bindData.save()
     }
@@ -42,8 +45,9 @@ module.exports = {
   profileGet: async(data) => {
     const userId = new ObjectId(data.userId);
     const userExist = await User.findOne({_id : userId});
-    const sellerExist = await Sellers.findOne({userId : userId});
-    return { email: userExist.email, usertype: userExist.usertype, name: sellerExist.name}
+    if(userExist){
+      return { email: userExist.email, usertype: userExist.usertype, name: userExist.name}
+    }
   }
 };
 

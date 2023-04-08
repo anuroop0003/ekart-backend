@@ -15,10 +15,16 @@ module.exports = {
   getProfile: async(req, res) => {
     try {
       const profileData = await userService.profileGet(req.payload);
-      res.status(200).json({
-        message: 'Profile fetched successfully',
-        data: profileData
-      });
+if(profileData){
+  res.status(200).json({
+    message: 'Profile fetched successfully',
+    data: profileData
+  })
+  }else{
+    res.status(400).json({
+      message: 'No user found',
+    });
+}
     } catch (error) {
       console.log(error)
       res.status(400).json(error);

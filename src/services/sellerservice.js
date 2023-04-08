@@ -12,6 +12,6 @@ module.exports = {
         return await Sellers.findOne({ userId: data.userId});
     },
     ListAll: async () => {
-        return await Sellers.find();
+        return await Sellers.find({ isOnboarded: true});
     }
 }

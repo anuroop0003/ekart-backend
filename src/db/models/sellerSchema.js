@@ -18,6 +18,9 @@ const sellerSchema = new mongoose.Schema({
     gstno: {
         type: String,
     },
+    isOnboarded: {
+        type: Boolean
+    },
     pincode: {
         type: String,
     },
