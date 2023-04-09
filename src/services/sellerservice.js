@@ -13,5 +13,12 @@ module.exports = {
     },
     ListAll: async () => {
         return await Sellers.find({ isOnboarded: true});
+    },
+    sellerDelete: async(data) => {
+        return await Sellers.deleteOne(data);
+    },
+    sellerApprove: async(data) => {
+        console.log("{status: data.status, description: data.description}", {status: data.status, description: data.description});
+        return await Sellers.updateOne({ userId: data.userId }, {status: data.status, description: data.description});
     }
 }

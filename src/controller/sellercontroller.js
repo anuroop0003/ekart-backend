@@ -37,7 +37,7 @@ module.exports = {
             res.status(400).json(error);
         }
     },
-    ListAllSeller: (async (req, res) => {
+    ListAllSeller: async (req, res) => {
         try {
             const sellerData = await sellerService.ListAll(req);
             res.status(200).json({
@@ -48,5 +48,39 @@ module.exports = {
             console.log(error);
             res.status(400).json(error)
         }
-    })
+    },
+    DeleteSeller: async(req, res) => {
+        try {
+            const sellerDelete = await sellerService.sellerDelete(req.body);
+            if(sellerDelete){
+                res.status(200).json({
+                    message: 'Seller deleted successfully',
+                });
+            }
+            else{
+                res.status(400).json({
+                    message: 'Seller delete unsuccessfull',
+                });
+            }
+        } catch (error) {
+            
+        }
+    },
+    ApproveSeller: async(req, res) => {
+        try {
+            const sellerApprove = await sellerService.sellerApprove(req.body);
+            if(sellerApprove){
+                res.status(200).json({
+                    message: 'Seller approved successfully',
+                });
+            }
+            else{
+                res.status(400).json({
+                    message: 'Seller approved unsuccessfull',
+                });
+            }
+        } catch (error) {
+            
+        }
+    }
 };

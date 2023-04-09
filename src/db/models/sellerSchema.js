@@ -29,6 +29,9 @@ const sellerSchema = new mongoose.Schema({
     },
     status:{
         type: String
+    },
+    description:{
+        type: String
     }
 });
 

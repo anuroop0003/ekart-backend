@@ -12,5 +12,11 @@
         "src": "/(.*)",
         "dest": "/"
       }
-    ]
+    ],
+    "github": {
+      "deploymentEnabled": {
+        "main": true,
+        "development": false
+      }
+    }
   }

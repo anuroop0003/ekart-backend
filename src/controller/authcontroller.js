@@ -6,6 +6,7 @@ module.exports = {
   signIn: async (req, res) => {
     const isUserExist = await userExist({ email: req.body.email });
    
+    console.log("isUserExist", isUserExist);
     try {
       if (isUserExist) {
         const decryptPassword = await compare(
@@ -13,7 +14,7 @@ module.exports = {
           isUserExist?.password,
         );
         if(decryptPassword){
-        const auth = await generateAccessToken({ userId: isUserExist._id });
+        const auth = await generateAccessToken({ userId: isUserExist._id, usertype: isUserExist.usertype});
         res.status(200).json({
           message: 'Login was successful',
           data: { 'acces_token': auth, 'user_type': isUserExist.usertype},
