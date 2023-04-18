@@ -7,14 +7,17 @@ module.exports = {
             req.body['userId'] = req.payload.userId;
             req.body['status'] = 'pending';
             req.body['isOnboarded'] = true;
-            const checkSellerExist = await Sellers.find({gstno: req.body.gstno, regno: req.body.regno, pincode: req.body.pincode })
-            if(!checkSellerExist){
+            const checkSellerExist = await Sellers.find({gstno: req.body.gstno, regno: req.body.regno, pincode: req.body.pincode });
+            console.log("checkSellerExist", checkSellerExist);
+            if(checkSellerExist.length < 1 || checkSellerExist == undefined){
+                console.log(true);
                 await sellerService.sellerRegister(req.body);
                 res.status(200).json({
                     message: 'Seller registration completed',
                 });   
             }
             else{
+                console.log(false);
                 res.status(400).json({
                     message: 'Seller already registered',
                 });
@@ -30,7 +33,7 @@ module.exports = {
             const sellerData = await sellerService.sellerCheck(req.body);
             res.status(200).json({
                 message: 'Seller status fetched',
-                data: {"status" : sellerData.status}
+                data: {"status" : sellerData.status, "isOnboarded" : sellerData.isOnboarded, description:sellerData.description}
             });
         } catch (error) {
             console.log(error);

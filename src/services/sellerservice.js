@@ -8,7 +8,8 @@ module.exports = {
         return await Sellers.updateOne({ userId: data.userId }, data);
     },
     sellerCheck: async (data) => {
-        data.userId = new ObjectId(data.userId)
+        data.userId = new ObjectId(data.userId);
+        console.log("data.userId", data.userId);
         return await Sellers.findOne({ userId: data.userId});
     },
     ListAll: async () => {
@@ -18,7 +19,6 @@ module.exports = {
         return await Sellers.deleteOne(data);
     },
     sellerApprove: async(data) => {
-        console.log("{status: data.status, description: data.description}", {status: data.status, description: data.description});
         return await Sellers.updateOne({ userId: data.userId }, {status: data.status, description: data.description});
     }
 }

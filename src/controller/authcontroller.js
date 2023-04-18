@@ -5,8 +5,6 @@ const bcrypt = require('bcrypt');
 module.exports = {
   signIn: async (req, res) => {
     const isUserExist = await userExist({ email: req.body.email });
-   
-    console.log("isUserExist", isUserExist);
     try {
       if (isUserExist) {
         const decryptPassword = await compare(

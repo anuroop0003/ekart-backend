@@ -32,7 +32,6 @@ module.exports = {
                 return next(createHttpError.Unauthorized(message))
             }
             const data = await Users.findById(payload.userId);
-            console.log("data", data);
             if (!data) {
                 return next(createHttpError.Unauthorized("User not exist"))
             }
